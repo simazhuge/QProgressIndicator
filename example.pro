@@ -8,8 +8,10 @@ DEPENDPATH += .
 INCLUDEPATH += . intermediate
 
 # Input
-HEADERS += QProgressIndicator.h
-SOURCES += main.cpp QProgressIndicator.cpp
+HEADERS += QProgressIndicator.h \
+    busywidget.h
+SOURCES += main.cpp QProgressIndicator.cpp \
+    busywidget.cpp
 
 OBJECTS_DIR = intermediate
 MOC_DIR = intermediate

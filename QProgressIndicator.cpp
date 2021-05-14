@@ -109,10 +109,11 @@ QProgressIndicator::heightForWidth(int w) const
 {
     return w;
 }
-
+#include <QDebug>
 void
 QProgressIndicator::timerEvent(QTimerEvent* /*event*/)
 {
+    qDebug() << m_angle;
     m_angle = (m_angle + 30) % 360;
 
     update();

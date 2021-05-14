@@ -29,47 +29,59 @@
 #include <QPushButton>
 #include <QSlider>
 #include <QVBoxLayout>
-
+#include <QGraphicsScene>
+#include <QGraphicsItem>
+#include <QGraphicsView>
 #include "QProgressIndicator.h"
+#include "busywidget.h"
 
 int
 main(int argc, char** argv)
 {
     QApplication app(argc, argv);
 
-    QMainWindow* mw = new QMainWindow;
+    QGraphicsView w;
+    QGraphicsScene s;
+    w.setScene(&s);
+    BusyWidget *p = new BusyWidget();
+    s.addItem(p);
+    p->setSize(QSize(32, 32));
+    w.setSceneRect(0, 0, 100, 100);
+    p->setPos(0,0);
+    w.show();
+//    QMainWindow* mw = new QMainWindow;
 
-    QProgressIndicator* pi = new QProgressIndicator();
+//    QProgressIndicator* pi = new QProgressIndicator();
 
-    QFrame* frame = new QFrame;
+//    QFrame* frame = new QFrame;
 
-    QVBoxLayout* vbl = new QVBoxLayout;
+//    QVBoxLayout* vbl = new QVBoxLayout;
 
-    QPushButton* startPb = new QPushButton("start spin");
-    QObject::connect(startPb, SIGNAL(clicked(bool)), pi, SLOT(startAnimation()));
+//    QPushButton* startPb = new QPushButton("start spin");
+//    QObject::connect(startPb, SIGNAL(clicked(bool)), pi, SLOT(startAnimation()));
 
-    QPushButton* stopPb = new QPushButton("stop spin");
-    QObject::connect(stopPb, SIGNAL(clicked(bool)), pi, SLOT(stopAnimation()));
+//    QPushButton* stopPb = new QPushButton("stop spin");
+//    QObject::connect(stopPb, SIGNAL(clicked(bool)), pi, SLOT(stopAnimation()));
 
-    QSlider* delaySlider = new QSlider;
-    delaySlider->setRange(0, 100);
-    delaySlider->setValue(pi->animationDelay());
-    delaySlider->setOrientation(Qt::Horizontal);
-    QObject::connect(delaySlider, SIGNAL(valueChanged(int)), pi, SLOT(setAnimationDelay(int)));
+//    QSlider* delaySlider = new QSlider;
+//    delaySlider->setRange(0, 100);
+//    delaySlider->setValue(pi->animationDelay());
+//    delaySlider->setOrientation(Qt::Horizontal);
+//    QObject::connect(delaySlider, SIGNAL(valueChanged(int)), pi, SLOT(setAnimationDelay(int)));
 
-    vbl->addWidget(startPb);
-    vbl->addWidget(stopPb);
-    vbl->addWidget(delaySlider);
+//    vbl->addWidget(startPb);
+//    vbl->addWidget(stopPb);
+//    vbl->addWidget(delaySlider);
 
-    QHBoxLayout* hbl = new QHBoxLayout(frame);
-    hbl->addWidget(pi);
-    hbl->addLayout(vbl);
+//    QHBoxLayout* hbl = new QHBoxLayout(frame);
+//    hbl->addWidget(pi);
+//    hbl->addLayout(vbl);
 
-    pi->startAnimation();
+//    pi->startAnimation();
 
-    mw->setCentralWidget(frame);
+//    mw->setCentralWidget(frame);
 
-    mw->show();
+//    mw->show();
 
     return app.exec();
 }
